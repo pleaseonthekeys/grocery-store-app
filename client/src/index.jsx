@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import FruitList from './components/FruitList.jsx'
+import FruitForm from './components/FruitForm'
 
 
 class App extends React.Component {
@@ -9,23 +11,44 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            test : 'test'
-        }
+            fruits : []
+        };
+
+        this.getFruit = this.getFruit.bind(this)
     }
 
     componentDidMount() {
         console.log('mounted and communicating')
+        this.getFruit()
     }
 
 
 
+    getFruit() {
+        return axios.get('/fruit')
+        .then(({data}) => {
+            this.setState({fruits: data}, () => {
+            })
+        })
+        .catch(err => console.log('error getting test fruit', err))
+    }
 
+    addFruits(fruit) {
+        return axios.post('/fruit', fruit)
+        .then(() => {
+            return this.getFruit()
+        })
+        .catch(err => {
+            console.log('error posting fruit', err)
+        })
+    }
 
     render() {
         return (
             <div>
                 <h1>Rendering Anything</h1>
-                <h1>Rendering something else</h1>
+                <FruitList fruits={this.state.fruits}/>
+                <FruitForm addFruit={this.addFruits}/>
             </div>
         )
     }
