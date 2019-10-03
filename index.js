@@ -10,6 +10,7 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(parser.json());
+app.use(express.static(__dirname + '/client/dist'));
 
 
 //local data.json requests
