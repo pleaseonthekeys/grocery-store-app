@@ -14,7 +14,8 @@ class App extends React.Component {
             fruits : []
         };
 
-        this.getFruit = this.getFruit.bind(this)
+        this.getFruit = this.getFruit.bind(this);
+        this.addFruits = this.addFruits.bind(this)
     }
 
     componentDidMount() {
@@ -47,8 +48,8 @@ class App extends React.Component {
         return (
             <div>
                 <h1>Rendering Anything</h1>
-                <FruitList fruits={this.state.fruits}/>
                 <FruitForm addFruit={this.addFruits}/>
+                <FruitList fruits={this.state.fruits}/>
             </div>
         )
     }

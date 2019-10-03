@@ -15,7 +15,7 @@ class FruitForm extends React.Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault(); //again, why this?
+        event.preventDefault(); //again, why this? in the case of onchage.. defaukt is nothing, so e need to change that default...default action is to make request, we dont want tthat
 
 
         const { isle, name, type } = this.state;
@@ -41,19 +41,19 @@ class FruitForm extends React.Component {
         return (
             <div>
               <form onSubmit={this.handleSubmit}>
-                <input
+                FOOD NAME: <input
                   type="text"
                   name="name"
                   value={this.state.name}
                   onChange={this.handleInputChange}
                 />
-                <input
+                ISLE NUMBER: <input
                   type="number"
                   name="isle"
                   value={this.state.isle}
                   onChange={this.handleInputChange}
                 />
-                <input
+                FOOD TYPE: <input
                   type="text"
                   name="type"
                   value={this.state.type}
