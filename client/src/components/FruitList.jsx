@@ -1,18 +1,19 @@
-import React from 'react'
+import React from "react";
+import FruitItem from "./FruitItem.jsx";
 
-const FruitList = (props) => (
-    <div>
-        <h4>Fruit List</h4>
-        <ul>
-            {props.fruits.map(fruit => {
-                const liStyle = {
-                    color: 'blue',
-                  };
-                return <li key={fruit._id} style={liStyle}>{`${fruit.food_name} Located At Isle Number: ${fruit.isle_number}`}</li>
-            })}
-        </ul>
-    </div>
-)
+//functional components don't use THIS!!
+const FruitList = props => (
+  <div>
+    <h4>Fruit List</h4>
+    <ul>
+      {props.fruits.map(fruit => {
+        // const liStyle = {
+        //   color: "blue"
+        // };
+        return <FruitItem fruit={fruit} getFruit={props.getFruit} />;
+      })}
+    </ul>
+  </div>
+);
 
-export default FruitList
-
+export default FruitList;

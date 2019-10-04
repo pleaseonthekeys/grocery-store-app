@@ -7,11 +7,14 @@ class FruitForm extends React.Component {
       this.state = {
         isle: 2, //isle
         name: '', //name
-        type: 'fruit'
+        type: 'fruit',
+        old_isle: 0,
+        new_isle: 0
       };
   
       this.handleInputChange = this.handleInputChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this)
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleIsleChangeSubmit = this.handleIsleChangeSubmit.bind(this);
     }
 
     handleSubmit(event) {
@@ -37,6 +40,23 @@ class FruitForm extends React.Component {
         })
     }
 
+    handleIsleChangeSubmit(event) {
+      event.preventDefault(); 
+
+
+      const { name, type, new_isle, old_isle } = this.state;
+
+      //I know I can use object short hand here because my keynames match value variable names... will do...
+      let fruit = {
+          name: name,
+          type: type,
+          new_isle: new_isle,
+          old_isle: old_isle
+      };
+
+      this.props.updateFruitIsle(fruit);
+  }
+
     render() {
         return (
             <div>
@@ -60,6 +80,21 @@ class FruitForm extends React.Component {
                   onChange={this.handleInputChange}
                 />
                 <input type="submit" value="Submit" />
+              </form>
+              <form onSubmit={this.handleIsleChangeSubmit}>
+                OLD ISLE: <input
+                  type="number"
+                  name="old_isle"
+                  value={this.state.old_isle}
+                  onChange={this.handleInputChange}
+                  />
+                NEW ISLE: <input
+                  type="number"
+                  name="new_isle"
+                  value={this.state.new_isle}
+                  onChange={this.handleInputChange}
+                  />
+              <input type="submit" value="Submit" />
               </form>
             </div>
           );

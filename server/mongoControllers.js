@@ -2,16 +2,16 @@ let GroceryStore = require('../dbMongo')
 
 const mongoFruitControllers = {
     getFruit: (req, res) => {
-        GroceryStore.find({food_type: 'fruit'})
-      .exec()
-      .then((data) => {
-          console.log('found', data)
-          res.send(data)
-      })
-      .catch((err) => {
-        console.log('just in case', err)
-        res.sendStatus(500)
-      });
+        GroceryStore.find({ food_type: 'fruit' })
+            .exec()
+            .then((data) => {
+                console.log('found', data)
+                res.send(data)
+            })
+            .catch((err) => {
+                console.log('just in case', err)
+                res.sendStatus(500)
+            });
     },
 
     postFruit: (req, res) => {
@@ -23,14 +23,14 @@ const mongoFruitControllers = {
 
         // let errorArgs = [params.food_type, params.food_name, params.isle_number]
         GroceryStore.create(params)
-        .then((data) => {
-            console.log('created fruit')
-            res.send({data})
-        })
-        .catch((err) => {
-            console.log('error creating fruit', err)
-            res.sendStatus(500)
-        })
+            .then((data) => {
+                console.log('created fruit')
+                res.send({ data })
+            })
+            .catch((err) => {
+                console.log('error creating fruit', err)
+                res.sendStatus(500)
+            })
     },
 
     updateFruitIsle: (req, res) => {
@@ -40,32 +40,36 @@ const mongoFruitControllers = {
             isle_number: req.body.old_isle
         };
 
-        let updatedIsle = {isle_number: req.body.new_isle}
+        let updatedIsle = { isle_number: req.body.new_isle }
 
         GroceryStore.updateMany(params, updatedIsle)
-        .then((data) => {
-            console.log(`updated ${params.food_name} isle to ${updatedIsle.isle_number}`)
-            res.send({data})
-        })
-        .catch((err) => {
-            console.log(`error updating ${params.food_name} isle`)
-            res.sendStatus(500)
-        })
+            .then((data) => {
+                console.log(`updated ${params.food_name} isle to ${updatedIsle.isle_number}`)
+                res.send({ data })
+            })
+            .catch((err) => {
+                console.log(`error updating ${params.food_name} isle`)
+                res.sendStatus(500)
+            })
     },
 
     deleteFruitItem: (req, res) => {
+        console.log("req.body here!", req.body)
         let params = {
             food_name: req.body.deleteFood
         }
+
         GroceryStore.deleteMany(params)
-        .then((data) => {
-            console.log(`removed ${params.food_name} from grocery store`)
-            res.send({data})
-        })
-        .catch((err) => {
-            console.log(`could not remove ${params.food_name}`)
-            res.sendStatus(500)
-        })
+            .then((data) => {
+                console.log("here is data from then", data)
+                console.log(`removed ${params.food_name} from grocery store`)
+                res.send({ data })
+            })
+            .catch((err) => {
+                console.log("here is error from catch ", err)
+                console.log(`could not remove ${params.food_name}`)
+                res.sendStatus(500)
+            })
     }
 }
 
@@ -73,7 +77,7 @@ const mongoFruitControllers = {
 
 const mongoGreensControllers = {
     getGreens: (req, res) => {
-        GroceryStore.find({food_type: 'vegetable'})
+        GroceryStore.find({ food_type: 'vegetable' })
             .exec()
             .then((data) => {
                 console.log('found', data)
@@ -93,35 +97,35 @@ const mongoGreensControllers = {
         };
 
         GroceryStore.create(params)
-        .then((data) => {
-            console.log('created greens')
-            res.send({data})
-        })
-        .catch((err) => {
-            console.log('error creating greens', err)
-            res.sendStatus(500)
-        });
+            .then((data) => {
+                console.log('created greens')
+                res.send({ data })
+            })
+            .catch((err) => {
+                console.log('error creating greens', err)
+                res.sendStatus(500)
+            });
     },
 
     updateGreensIsle: (req, res) => {
-       
-            let params = {
-                food_type: req.body.type,
-                food_name: req.body.name,
-                isle_number: req.body.old_isle
-            };
-    
-            let updatedIsle = {isle_number: req.body.new_isle}
 
-                   GroceryStore.updateMany(params, updatedIsle)
-                    .then((data) => {
-                        console.log(`updated ${params.food_name} isle to ${updatedIsle.isle_number}`)
-                        res.send({data})
-                    })
-                    .catch((err) => {
-                        console.log(`error updating ${params.food_name} isle`)
-                        res.sendStatus(500)
-                    })
+        let params = {
+            food_type: req.body.type,
+            food_name: req.body.name,
+            isle_number: req.body.old_isle
+        };
+
+        let updatedIsle = { isle_number: req.body.new_isle }
+
+        GroceryStore.updateMany(params, updatedIsle)
+            .then((data) => {
+                console.log(`updated ${params.food_name} isle to ${updatedIsle.isle_number}`)
+                res.send({ data })
+            })
+            .catch((err) => {
+                console.log(`error updating ${params.food_name} isle`)
+                res.sendStatus(500)
+            })
 
     },
 
@@ -131,14 +135,14 @@ const mongoGreensControllers = {
         }
 
         GroceryStore.deleteMany(params)
-        .then((data) => {
-            console.log(`removed ${params.food_name} from grocery store`)
-            res.send({data})
-        })
-        .catch((err) => {
-            console.log(`could not remove ${params.food_name} from grocery store`)
-            res.sendStatus(500)
-        })
+            .then((data) => {
+                console.log(`removed ${params.food_name} from grocery store`)
+                res.send({ data })
+            })
+            .catch((err) => {
+                console.log(`could not remove ${params.food_name} from grocery store`)
+                res.sendStatus(500)
+            })
     }
 }
 
@@ -147,11 +151,11 @@ const mongoGreensControllers = {
 
 const mongoProteinControllers = {
     getProtein: (req, res) => {
-        GroceryStore.find({food_type: 'protein'})
+        GroceryStore.find({ food_type: 'protein' })
             .exec()
             .then((data) => {
                 console.log('found protein', data)
-                res.send({data})
+                res.send({ data })
             })
             .catch((err) => {
                 console.log('error finding protein', err)
@@ -167,14 +171,14 @@ const mongoProteinControllers = {
         };
 
         GroceryStore.create(params)
-        .then((data) => {
-            console.log('created protein')
-            res.send({data})
-        })
-        .catch((err) => {
-            console.log('error creating protein', err)
-            res.sendStatus(500)
-        })
+            .then((data) => {
+                console.log('created protein')
+                res.send({ data })
+            })
+            .catch((err) => {
+                console.log('error creating protein', err)
+                res.sendStatus(500)
+            })
     },
 
     updateProteinIsle: (req, res) => {
@@ -184,18 +188,18 @@ const mongoProteinControllers = {
             isle_number: req.body.old_isle
         };
 
-        let updatedIsle = {isle_number: req.body.new_isle}
+        let updatedIsle = { isle_number: req.body.new_isle }
 
 
         GroceryStore.updateMany(params, updatedIsle)
-        .then((data) => {
-            console.log(`updated ${params.food_name} isle to ${updatedIsle}`)
-            res.send({data})
-        })
-        .catch((err) => {
-            console.log(`error updating ${params.food_name} isle`)
-            res.sendStatus(500)
-        })
+            .then((data) => {
+                console.log(`updated ${params.food_name} isle to ${updatedIsle}`)
+                res.send({ data })
+            })
+            .catch((err) => {
+                console.log(`error updating ${params.food_name} isle`)
+                res.sendStatus(500)
+            })
     },
 
     deleteProteinItem: (req, res) => {
@@ -203,14 +207,14 @@ const mongoProteinControllers = {
             food_name: req.body.deleteFood
         }
         GroceryStore.deleteMany(params)
-        .then((data) => {
-            console.log(`removed ${params.food_name} from the grocery store`)
-            res.send({data})
-        })
-        .catch((err) => {
-            console.log(`could not remove ${params.food_name} from the grocery store`)
-            res.sendStatus(500)
-        })
+            .then((data) => {
+                console.log(`removed ${params.food_name} from the grocery store`)
+                res.send({ data })
+            })
+            .catch((err) => {
+                console.log(`could not remove ${params.food_name} from the grocery store`)
+                res.sendStatus(500)
+            })
     }
 }
 

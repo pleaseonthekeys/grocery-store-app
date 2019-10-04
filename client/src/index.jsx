@@ -15,7 +15,8 @@ class App extends React.Component {
         };
 
         this.getFruit = this.getFruit.bind(this);
-        this.addFruits = this.addFruits.bind(this)
+        this.addFruits = this.addFruits.bind(this);
+        this.updateFruitIsle = this.updateFruitIsle.bind(this);
     }
 
     componentDidMount() {
@@ -44,12 +45,22 @@ class App extends React.Component {
         })
     }
 
+    updateFruitIsle(fruit) {
+        return axios.put('/fruit', fruit)
+        .then(() => {
+            return this.getFruit()
+        })
+        .catch(err => {
+            console.log('error changing fruit isle', err)
+        })
+    }
+
     render() {
         return (
             <div>
                 <h1>Rendering Anything</h1>
-                <FruitForm addFruit={this.addFruits}/>
-                <FruitList fruits={this.state.fruits}/>
+                <FruitForm addFruit={this.addFruits} updateFruitIsle={this.updateFruitIsle}/>
+                <FruitList fruits={this.state.fruits} getFruit={this.getFruit}/>
             </div>
         )
     }
