@@ -28,7 +28,7 @@ class FruitItem extends Component {
         key={this.props.fruit._id}
         // style={liStyle}
       >
-        {`${this.props.fruit.food_name} Located At Isle Number: ${this.props.fruit.isle_number}`}{" "}
+        {`${this.props.fruit.food_name} Located At Isle Number: ${this.props.fruit.isle_number}`}
         <button onClick={this.handleClick}>X</button>
       </li>
     );
