@@ -66,7 +66,7 @@ class GreensForm extends React.Component {
             value={this.state.name}
             onChange={this.handleInputChange}
           />
-          ISLE NUMBER:
+          AISLE NUMBER:
           <input
             type="number"
             name="isle"
@@ -83,14 +83,14 @@ class GreensForm extends React.Component {
           <input type="submit" value="Submit" />
         </form>
         <form onSubmit={this.handleIsleChangeSubmit}>
-          OLD ISLE:
+          OLD AISLE:
           <input
             type="number"
             name="old_isle"
             value={this.state.old_isle}
             onChange={this.handleInputChange}
           />
-          NEW ISLE:
+          NEW AISLE:
           <input
             type="number"
             name="new_isle"

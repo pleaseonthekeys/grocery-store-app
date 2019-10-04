@@ -26,16 +26,16 @@ app.get('/', (req, res) => {
 
 app.get('/fruits', (req, res) => {
     // res.status(200).send(food);
-    GroceryStore.find({food_type: 'fruit'})
-  .exec()
-  .then((data) => {
-      console.log('found', data)
-      res.send(data)
-  })
-  .catch((err) => {
-    console.log('just in case', err)
-    res.sendStatus(500)
-  });
+    GroceryStore.find({ food_type: 'fruit' })
+        .exec()
+        .then((data) => {
+            console.log('found', data)
+            res.send(data)
+        })
+        .catch((err) => {
+            console.log('just in case', err)
+            res.sendStatus(500)
+        });
 });
 
 app.post('/food', (req, res) => {
@@ -44,7 +44,7 @@ app.post('/food', (req, res) => {
     res.status(201).send(`You have successfully posted your ${newFood}!`);
 });
 
-app.post('/food/newFood', (req, res)=> {
+app.post('/food/newFood', (req, res) => {
     let category = req.body.dessert;
     food.dessert = category;
 
@@ -107,16 +107,16 @@ app.post('/protein', mongoProteinControllers.postProtein);
 //put requests to change isle or name of food
 
 //change isle of single fruit
-// app.put('/fruit', fruitControllers.updateFruitIsle);
-app.put('/fruit', mongoFruitControllers.updateFruitIsle);
+// app.put('/fruit', fruitControllers.updateFruitisle);
+app.put('/fruit', mongoFruitControllers.updateFruitisle);
 
 //change isle of a single vegetable
-// app.put('/greens', greensControllers.updateGreensIsle);
-app.put('/greens', mongoGreensControllers.updateGreensIsle);
+// app.put('/greens', greensControllers.updateGreensisle);
+app.put('/greens', mongoGreensControllers.updateGreensisle);
 
 //change isle of single protein item
-// app.put('/protein', proteinControllers.updateProteinIsle);
-app.put('/protein', mongoProteinControllers.updateProteinIsle);
+// app.put('/protein', proteinControllers.updateProteinisle);
+app.put('/protein', mongoProteinControllers.updateProteinisle);
 
 //remove food item from grocery store
 

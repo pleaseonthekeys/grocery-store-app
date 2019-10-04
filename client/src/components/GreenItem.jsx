@@ -28,7 +28,7 @@ class GreenItem extends Component {
         key={this.props.vegetable._id}
         // style={liStyle}
       >
-        {`${this.props.vegetable.food_name} Located At Isle Number: ${this.props.vegetable.isle_number}`}
+        {`${this.props.vegetable.food_name} Located At Aisle Number: ${this.props.vegetable.isle_number}`}
         <button onClick={this.handleClick}>X</button>
       </li>
     );

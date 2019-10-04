@@ -20,6 +20,7 @@ class App extends React.Component {
     this.updateFruitIsle = this.updateFruitIsle.bind(this);
     this.getGreens = this.getGreens.bind(this);
     this.addGreens = this.addGreens.bind(this);
+    this.updateGreensIsle = this.updateGreensIsle.bind(this);
   }
 
   componentDidMount() {
@@ -76,6 +77,17 @@ class App extends React.Component {
       })
       .catch(err => {
         console.log("error posting greens", err);
+      });
+  }
+
+  updateGreensIsle(vegetable) {
+    return axios
+      .put("/greens", vegetable)
+      .then(() => {
+        return this.getGreens();
+      })
+      .catch(err => {
+        console.log("error updating greens aisle", err);
       });
   }
 

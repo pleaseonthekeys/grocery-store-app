@@ -1,9 +1,9 @@
 let mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/food', {useNewUrlParser: true}); //infers port number
+mongoose.connect('mongodb://localhost/food', { useNewUrlParser: true }); //infers port number
 var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+db.once('open', function () {
   console.log('mongodb is connected!')
 });
 

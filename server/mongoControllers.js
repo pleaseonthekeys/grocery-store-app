@@ -33,18 +33,18 @@ const mongoFruitControllers = {
             })
     },
 
-    updateFruitIsle: (req, res) => {
+    updateFruitisle: (req, res) => {
         let params = {
             food_type: req.body.type,
             food_name: req.body.name,
             isle_number: req.body.old_isle
         };
 
-        let updatedIsle = { isle_number: req.body.new_isle }
+        let updatedisle = { isle_number: req.body.new_isle }
 
-        GroceryStore.updateMany(params, updatedIsle)
+        GroceryStore.updateMany(params, updatedisle)
             .then((data) => {
-                console.log(`updated ${params.food_name} isle to ${updatedIsle.isle_number}`)
+                console.log(`updated ${params.food_name} isle to ${updatedisle.isle_number}`)
                 res.send({ data })
             })
             .catch((err) => {
@@ -107,7 +107,7 @@ const mongoGreensControllers = {
             });
     },
 
-    updateGreensIsle: (req, res) => {
+    updateGreensisle: (req, res) => {
 
         let params = {
             food_type: req.body.type,
@@ -115,11 +115,11 @@ const mongoGreensControllers = {
             isle_number: req.body.old_isle
         };
 
-        let updatedIsle = { isle_number: req.body.new_isle }
+        let updatedisle = { isle_number: req.body.new_isle }
 
-        GroceryStore.updateMany(params, updatedIsle)
+        GroceryStore.updateMany(params, updatedisle)
             .then((data) => {
-                console.log(`updated ${params.food_name} isle to ${updatedIsle.isle_number}`)
+                console.log(`updated ${params.food_name} isle to ${updatedisle.isle_number}`)
                 res.send({ data })
             })
             .catch((err) => {
@@ -181,19 +181,19 @@ const mongoProteinControllers = {
             })
     },
 
-    updateProteinIsle: (req, res) => {
+    updateProteinisle: (req, res) => {
         let params = {
             food_type: req.body.type,
             food_name: req.body.name,
             isle_number: req.body.old_isle
         };
 
-        let updatedIsle = { isle_number: req.body.new_isle }
+        let updatedisle = { isle_number: req.body.new_isle }
 
 
-        GroceryStore.updateMany(params, updatedIsle)
+        GroceryStore.updateMany(params, updatedisle)
             .then((data) => {
-                console.log(`updated ${params.food_name} isle to ${updatedIsle}`)
+                console.log(`updated ${params.food_name} isle to ${updatedisle}`)
                 res.send({ data })
             })
             .catch((err) => {
