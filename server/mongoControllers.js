@@ -155,7 +155,7 @@ const mongoProteinControllers = {
             .exec()
             .then((data) => {
                 console.log('found protein', data)
-                res.send({ data })
+                res.send(data)
             })
             .catch((err) => {
                 console.log('error finding protein', err)

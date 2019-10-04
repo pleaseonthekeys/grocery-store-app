@@ -56,8 +56,11 @@ class FruitForm extends React.Component {
   }
 
   render() {
+    const divStyle = {
+      color: "red"
+    };
     return (
-      <div>
+      <div style={divStyle}>
         <form onSubmit={this.handleSubmit}>
           FOOD NAME:{" "}
           <input
@@ -66,7 +69,7 @@ class FruitForm extends React.Component {
             value={this.state.name}
             onChange={this.handleInputChange}
           />
-          isle NUMBER:{" "}
+          AISLE NUMBER:{" "}
           <input
             type="number"
             name="isle"

@@ -23,13 +23,13 @@ class FruitItem extends Component {
   }
 
   render() {
+    const liStyle = {
+      color: "red"
+    };
     return (
-      <li
-        key={this.props.fruit._id}
-        // style={liStyle}
-      >
+      <li key={this.props.fruit._id} style={liStyle}>
         {`${this.props.fruit.food_name} Located At Aisle Number: ${this.props.fruit.isle_number}`}
-        <button onClick={this.handleClick}>X</button>
+        <button onClick={this.handleClick}>CLICK IF OUT OF STOCK</button>
       </li>
     );
   }

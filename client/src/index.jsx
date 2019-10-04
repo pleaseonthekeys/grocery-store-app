@@ -5,6 +5,8 @@ import FruitList from "./components/FruitList.jsx";
 import FruitForm from "./components/FruitForm.jsx";
 import GreensList from "./components/GreensList.jsx";
 import GreensForm from "./components/GreensForm.jsx";
+import ProteinList from "./components/ProteinList.jsx";
+import ProteinForm from "./components/ProteinForm.jsx";
 
 class App extends React.Component {
   constructor(props) {
@@ -12,23 +14,34 @@ class App extends React.Component {
 
     this.state = {
       fruits: [],
-      vegetables: []
+      vegetables: [],
+      proteinArr: []
     };
 
+    //fruit requests
     this.getFruit = this.getFruit.bind(this);
     this.addFruits = this.addFruits.bind(this);
     this.updateFruitIsle = this.updateFruitIsle.bind(this);
+
+    //vegetable requests
     this.getGreens = this.getGreens.bind(this);
     this.addGreens = this.addGreens.bind(this);
     this.updateGreensIsle = this.updateGreensIsle.bind(this);
+
+    //protein requests
+    this.getProtein = this.getProtein.bind(this);
+    this.addProtein = this.addProtein.bind(this);
+    // this.updateProteinIsle = this.updateProteinIsle.bind(this);
   }
 
   componentDidMount() {
     console.log("mounted and communicating");
     this.getFruit();
     this.getGreens();
+    this.getProtein();
   }
 
+  //fruit requests
   getFruit() {
     return axios
       .get("/fruit")
@@ -60,6 +73,7 @@ class App extends React.Component {
       });
   }
 
+  //vegetable requests
   getGreens() {
     return axios
       .get("/greens")
@@ -91,10 +105,34 @@ class App extends React.Component {
       });
   }
 
+  //protein requests: need to map through protein array to render
+  getProtein() {
+    return axios
+      .get("/protein")
+      .then(({ data }) => {
+        this.setState({ proteinArr: data });
+      })
+      .catch(err => {
+        console.log("error getting protein", err);
+      });
+  }
+
+  addProtein(proteinItem) {
+    return axios
+      .post("/protein", proteinItem)
+      .then(() => {
+        console.log("protein has been added to the store");
+        this.getProtein();
+      })
+      .catch(err => {
+        console.log("error adding new Protein", err);
+      });
+  }
+
   render() {
     return (
       <div>
-        <h1>Rendering Anything</h1>
+        <h1>Welcome to the Grocery Store! Let's Stock Some Food: </h1>
         <FruitForm
           addFruit={this.addFruits}
           updateFruitIsle={this.updateFruitIsle}
@@ -107,6 +145,14 @@ class App extends React.Component {
         <GreensList
           vegetables={this.state.vegetables}
           getGreens={this.getGreens}
+        />
+        <ProteinForm
+          addProtein={this.addProtein}
+          // updateProteinIsle={this.updateProteinIsle}
+        />
+        <ProteinList
+          protein={this.state.proteinArr}
+          getProtein={this.getProtein}
         />
       </div>
     );

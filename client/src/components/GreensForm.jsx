@@ -56,8 +56,11 @@ class GreensForm extends React.Component {
   }
 
   render() {
+    const divStyle = {
+        color: "green"
+      };
     return (
-      <div>
+      <div style={divStyle}>
         <form onSubmit={this.handleSubmit}>
           FOOD NAME:
           <input

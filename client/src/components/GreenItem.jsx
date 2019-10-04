@@ -23,13 +23,13 @@ class GreenItem extends Component {
   }
 
   render() {
+    const liStyle = {
+      color: "green"
+    };
     return (
-      <li
-        key={this.props.vegetable._id}
-        // style={liStyle}
-      >
+      <li key={this.props.vegetable._id} style={liStyle}>
         {`${this.props.vegetable.food_name} Located At Aisle Number: ${this.props.vegetable.isle_number}`}
-        <button onClick={this.handleClick}>X</button>
+        <button onClick={this.handleClick}>CLICK IF OUT OF STOCK</button>
       </li>
     );
   }
