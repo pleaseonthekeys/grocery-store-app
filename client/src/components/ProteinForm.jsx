@@ -8,7 +8,7 @@ class ProteinForm extends Component {
       name: "",
       isle: 9,
       type: "protein",
-      old_isle: this.isle,
+      old_isle: 0,
       new_isle: 0
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,7 +46,7 @@ class ProteinForm extends Component {
     console.log("updating protein aisle");
     event.preventDefault();
     let currentState = this.state;
-    
+
     const newAisle = {
       name: currentState.name,
       type: currentState.type,
@@ -55,12 +55,15 @@ class ProteinForm extends Component {
       new_isle: currentState.new_isle
     };
 
-    this.props.updateProteinIsle(newAisl);
+    this.props.updateProteinIsle(newAisle);
   }
 
   render() {
+    let divStyle = {
+      color: "blue"
+    };
     return (
-      <div>
+      <div style={divStyle}>
         <form onSubmit={this.handleSubmit}>
           <label>
             PROTEIN NAME:

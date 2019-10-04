@@ -31,7 +31,7 @@ class App extends React.Component {
     //protein requests
     this.getProtein = this.getProtein.bind(this);
     this.addProtein = this.addProtein.bind(this);
-    // this.updateProteinIsle = this.updateProteinIsle.bind(this);
+    this.updateProteinIsle = this.updateProteinIsle.bind(this);
   }
 
   componentDidMount() {
@@ -129,6 +129,18 @@ class App extends React.Component {
       });
   }
 
+  updateProteinIsle(proteinWihtNewAisle) {
+    return axios
+      .put("/protein", proteinWihtNewAisle)
+      .then(() => {
+        console.log("successfully updated aisle");
+        this.getProtein();
+      })
+      .catch(err => {
+        console.log("error updating protein aisle", err);
+      });
+  }
+
   render() {
     return (
       <div>
@@ -148,7 +160,7 @@ class App extends React.Component {
         />
         <ProteinForm
           addProtein={this.addProtein}
-          // updateProteinIsle={this.updateProteinIsle}
+          updateProteinIsle={this.updateProteinIsle}
         />
         <ProteinList
           protein={this.state.proteinArr}
